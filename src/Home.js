@@ -6,12 +6,14 @@ import CalendarHeader from './components/CalendarHeader';
 import Month from './components/Month';
 import Sidebar from './components/Sidebar';
 import GlobalContext from './context/GlobalContext';
+import EventModal from './components/EventModal';
+import { setShowEventModalReducer } from "../src/store/showEventModal";
 
 function Home(props) {
   //console.table(getMonth())
   const [currentMonth, setCurrentMonth] = useState(getMonth())
-  //const {monthIndedx} = useContext(GlobalContext) //context index
-  const { monthIndex } = props; //redux index
+  //const {monthIndedx, showEventModal} = useContext(GlobalContext) //context index
+  const { monthIndex, showEventModal, setShowEventModalReducer } = props; //redux index
   console.log('current month', monthIndex)
 
   useEffect(()=>{
@@ -20,6 +22,7 @@ function Home(props) {
 
   return (
     <React.Fragment>
+      {showEventModal && <EventModal/>}
       <div className="h-screen flex flex-col">   
         <CalendarHeader/>       
         <div className="flex flex-1">
@@ -33,7 +36,17 @@ function Home(props) {
 const mapStateToProps = (state) => {
     return {
     monthIndex: state.monthIndex,
+    showEventModal: state.showEventModal,
     };
   };
 
-export default connect(mapStateToProps, null)(Home);
+const mapDispatchToProps = (dispatch) => {
+    return {
+      setShowEventModalReducer: (bool) => {
+        dispatch(setShowEventModalReducer(bool));
+      }
+    };
+}
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

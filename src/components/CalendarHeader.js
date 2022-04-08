@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import logo from '../assets/logo.png'
 import GlobalContext from '../context/GlobalContext'
 import { connect } from "react-redux";
-import { setIndex, monthIndex } from "../store/monthIndex";
+import { setIndex } from "../store/monthIndex";
 import dayjs from 'dayjs';
 
 const CalendarHeader = (props) => {
@@ -19,7 +19,8 @@ const CalendarHeader = (props) => {
     console.log('monthIndex',monthIndex)
   }
   function handleReset() {
-    setIndex(dayjs().month());
+    setIndex(monthIndex === dayjs().month() ? monthIndex + Math.random() : dayjs().month());
+    //if monthindex = current month, +  range 0 to less than 1 
   }
   return (
     <header className='px-4 py-2 flex items-center'>

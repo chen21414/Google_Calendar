@@ -11,13 +11,6 @@ import Home from './Home';
 
 function App() {
   //console.table(getMonth())
-  const [currentMonth, setCurrentMonth] = useState(getMonth())
-  const {monthIndedx} = useContext(GlobalContext)
-  console.log('current month', monthIndedx)
-
-  useEffect(()=>{
-    setCurrentMonth(getMonth(monthIndedx))
-  }, [monthIndedx])
 
   return (
     <Provider store={store}>
