@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 const ContextWrapper = (props) => {
     const [monthIndex, setMonthIndex] = useState(dayjs().month()) //the current month if have empty dayjs()
     const [smallCalendarMonth, setsmallCalendarMonth] = useState(null)
-    const [daySelected, setDaySelected] = useState(null)
+    const [daySelected, setDaySelected] = useState(dayjs())
     const [showEventModal, setShowEventModal] = useState(false)
 
     useEffect(()=>{

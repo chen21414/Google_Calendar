@@ -11,8 +11,10 @@ export const setDaySelectedReducer = (number) => {
       number
     };
   };
+  
+let nowDay = dayjs()
 
-const reducer = (state = null, action) => {
+const reducer = (state = nowDay, action) => {
   switch (action.type) {
     case SET_DAYSELECTED:
       return setDaySelected(
